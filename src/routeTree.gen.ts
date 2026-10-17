@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CatchUpRouteImport } from './routes/catch-up'
+import { Route as DigestRouteImport } from './routes/digest'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CatchUpRoute = CatchUpRouteImport.update({
+  id: '/catch-up',
+  path: '/catch-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DigestRoute = DigestRouteImport.update({
+  id: '/digest',
+  path: '/digest',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/catch-up': typeof CatchUpRoute
+  '/digest': typeof DigestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/catch-up': typeof CatchUpRoute
+  '/digest': typeof DigestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/catch-up': typeof CatchUpRoute
+  '/digest': typeof DigestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/catch-up' | '/digest'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/catch-up' | '/digest'
+  id: '__root__' | '/' | '/catch-up' | '/digest'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CatchUpRoute: typeof CatchUpRoute
+  DigestRoute: typeof DigestRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catch-up': {
+      id: '/catch-up'
+      path: '/catch-up'
+      fullPath: '/catch-up'
+      preLoaderRoute: typeof CatchUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/digest': {
+      id: '/digest'
+      path: '/digest'
+      fullPath: '/digest'
+      preLoaderRoute: typeof DigestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CatchUpRoute: CatchUpRoute,
+  DigestRoute: DigestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
