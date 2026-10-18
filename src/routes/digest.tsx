@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import { Shell, Chip } from "@/components/Shell";
 import { DigestList } from "@/components/DigestList";
 import { buildDigest, loadPrefs, type Prefs } from "@/lib/data";
+import { YouTubeFeed } from "@/components/YouTubeFeed";
+import { youtubeQueryOptions } from "@/lib/youtube-query";
 
 export const Route = createFileRoute("/digest")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(youtubeQueryOptions),
   head: () => ({
     meta: [
       { title: "Today's Brief — BiasBrief" },
@@ -37,6 +40,8 @@ function Digest() {
           {prefs.stanType}{prefs.members.length ? ` · ${prefs.members.join(", ")}` : ""}{prefs.cps.length ? ` · ♡ ${prefs.cps.join(", ")}` : ""}
         </p>
       )}
+      <YouTubeFeed days={1} />
+      <h2 className="font-display mt-8 text-2xl font-bold">LUMIÈRE · Sample brief</h2>
       <div className="my-6 border-y border-border py-5 text-sm">
         <strong>TL;DR:</strong> {items.length} updates — {official} official, {items.length - official} fan buzz. {items[0] && `Top story: ${items[0].title}.`}
       </div>

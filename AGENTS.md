@@ -11,3 +11,4 @@
 
 - Keep social permission review in the dedicated `/connections` route; disable provider authorization until a linked client and real app-user authentication exist, so consent is never simulated.
 - Keep the shared concert masthead and navigation in Shell and express visual roles through global semantic tokens so all content pages maintain the same identity.
+- Fetch public YouTube uploads through a server function using a server-only helper and the saved key in a request header; keep live channel content separate from fictional demo briefs to avoid false attribution.
