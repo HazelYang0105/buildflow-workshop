@@ -24,15 +24,15 @@ const platforms = [
 function Connections() {
   return (
     <Shell>
-      <section className="py-8">
+      <section className="pb-8">
         <p className="text-sm font-semibold uppercase tracking-widest text-primary">Your accounts · Your choice</p>
         <h1 className="font-display mt-2 text-4xl font-bold sm:text-5xl">Social connections</h1>
         <p className="mt-4 max-w-lg text-muted-foreground">Choose what you share with BiasBrief. Review access before connecting your social account.</p>
       </section>
 
-      <div className="space-y-6">
+      <div className="grid items-stretch gap-5 lg:grid-cols-3">
       {platforms.map((platform) => (
-      <section key={platform.id} aria-labelledby={`${platform.id}-heading`} className="rounded-lg border-2 border-foreground bg-card p-5 sm:p-7">
+      <section key={platform.id} aria-labelledby={`${platform.id}-heading`} className="connection-card flex flex-col rounded-lg border border-border bg-card p-5">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <span aria-hidden="true" className="flex size-14 shrink-0 items-center justify-center rounded-lg bg-foreground font-display text-3xl text-background">{platform.id === "instagram" ? <Instagram className="size-7" /> : platform.id === "threads" ? <AtSign className="size-7" /> : "𝕏"}</span>
@@ -55,7 +55,7 @@ function Connections() {
           <p className="mt-5 flex items-start gap-3 text-sm text-muted-foreground"><ShieldCheck aria-hidden="true" className="size-5 shrink-0" />No posting, liking, following or direct-message access requested.</p>
         </div>
 
-        <div role="status" className="mb-5 flex gap-3 rounded-lg bg-secondary p-4 text-sm">
+        <div role="status" className="mb-5 flex flex-1 gap-3 border-l-2 border-border pl-3 text-sm">
           <LockKeyhole aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
           <div><p className="font-semibold">Connection setup pending</p><p className="mt-1 text-muted-foreground">{platform.name} authorization isn’t available yet. BiasBrief needs its {platform.name} connection configured and user sign-in enabled first. No account access has been granted.</p>{platform.id !== "x" && <p className="mt-2 text-muted-foreground">Available access will depend on your account and the permissions approved by {platform.name}.</p>}</div>
         </div>

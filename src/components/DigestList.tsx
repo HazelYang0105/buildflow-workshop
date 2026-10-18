@@ -3,9 +3,9 @@ import type { Item } from "@/lib/data";
 export function DigestList({ items }: { items: Item[] }) {
   if (!items.length) return <p className="text-muted-foreground">Nothing new in this window.</p>;
   return (
-    <ol className="space-y-4">
+    <ol className="grid gap-5 md:grid-cols-2">
       {items.map((i) => (
-        <li key={i.id} className="card-pop rounded-2xl border-2 border-foreground bg-card p-5">
+        <li key={i.id} className="card-pop rounded-lg border border-foreground bg-card p-5">
           <div className="mb-2 flex flex-wrap items-center gap-2 text-xs">
             <span className={`rounded-full px-2.5 py-0.5 font-semibold ${i.verified ? "bg-verified text-verified-foreground" : "bg-buzz text-buzz-foreground"}`}>
               {i.verified ? "✓ Official" : "💬 Fan buzz · unverified"}
