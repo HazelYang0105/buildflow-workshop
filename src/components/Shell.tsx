@@ -4,17 +4,18 @@ import type { ReactNode } from "react";
 export function Shell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen">
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-5 py-6">
+      <header className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 px-5 py-6">
         <Link to="/" className="font-display text-2xl font-bold tracking-tight">
           Bias<span className="text-primary">Brief</span>
         </Link>
         <nav className="flex gap-1 text-sm">
-          {[
+          {([
             ["/", "Profile"],
             ["/digest", "Today"],
             ["/catch-up", "Catch-up"],
-          ].map(([to, l]) => (
-            <Link key={to} to={to as "/"} className="rounded-full px-3 py-1.5 text-muted-foreground hover:text-foreground" activeProps={{ className: "bg-foreground text-background" }} activeOptions={{ exact: true }}>
+            ["/connections", "Connections"],
+          ] as const).map(([to, l]) => (
+            <Link key={to} to={to} className="rounded-full px-3 py-1.5 text-muted-foreground hover:text-foreground" activeProps={{ className: "bg-foreground text-background" }} activeOptions={{ exact: true }}>
               {l}
             </Link>
           ))}

@@ -10,6 +10,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Pick your bias, CPs and stan style. Get a personalized daily K-pop digest in minutes." },
       { property: "og:title", content: "BiasBrief — Your K-pop Fandom Daily Digest" },
       { property: "og:description", content: "Personalized idol updates and fan buzz in one 3-minute read." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,

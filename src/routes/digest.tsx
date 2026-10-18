@@ -11,6 +11,8 @@ export const Route = createFileRoute("/digest")({
       { name: "description", content: "Your personalized K-pop daily digest: official updates and fan buzz ranked for you." },
       { property: "og:title", content: "Today's Brief — BiasBrief" },
       { property: "og:description", content: "Personalized idol updates and fan buzz, ranked for you." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Digest,
