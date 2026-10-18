@@ -2,6 +2,8 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Shell, Chip } from "@/components/Shell";
 import { CPS, GROUP, MEMBERS, STAN_TYPES, loadPrefs, savePrefs } from "@/lib/data";
+import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,7 +36,7 @@ function Index() {
 
   return (
     <Shell>
-      <section className="py-8">
+      <section className="pb-8">
         <p className="text-sm font-semibold uppercase tracking-widest text-primary">Pilot · {GROUP}</p>
         <h1 className="font-display mt-2 text-5xl font-bold leading-[1.05] sm:text-6xl">
           Your fandom,<br />in three minutes.
@@ -44,7 +46,7 @@ function Index() {
         </p>
       </section>
 
-      <div className="space-y-8">
+      <div className="max-w-3xl space-y-8">
         <Block n="1" title="How do you stan?">
           {STAN_TYPES.map((s) => <Chip key={s} on={stanType === s} onClick={() => setStanType(s)}>{s}</Chip>)}
         </Block>
@@ -54,12 +56,12 @@ function Index() {
         <Block n="3" title="CPs you follow (optional)">
           {CPS.map((c) => <Chip key={c} on={cps.includes(c)} onClick={() => setCps(toggle(cps, c))}>♡ {c}</Chip>)}
         </Block>
-        <button
+        <Button
           onClick={() => { savePrefs({ members, cps, stanType }); nav({ to: "/digest" }); }}
-          className="card-pop w-full rounded-2xl border-2 border-foreground bg-primary py-4 font-display text-lg font-bold text-primary-foreground"
+          className="card-pop h-14 w-full rounded-lg border border-foreground font-display text-lg font-bold"
         >
-          Get today's brief →
-        </button>
+          Get today's brief <ArrowUpRight />
+        </Button>
         <p className="text-center text-xs text-muted-foreground">
           Sources: official channels + curated fan discussions. No unrestricted social scraping.
         </p>

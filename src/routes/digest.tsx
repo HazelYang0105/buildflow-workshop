@@ -37,7 +37,7 @@ function Digest() {
           {prefs.stanType}{prefs.members.length ? ` · ${prefs.members.join(", ")}` : ""}{prefs.cps.length ? ` · ♡ ${prefs.cps.join(", ")}` : ""}
         </p>
       )}
-      <div className="my-6 rounded-2xl bg-secondary p-4 text-sm">
+      <div className="my-6 border-y border-border py-5 text-sm">
         <strong>TL;DR:</strong> {items.length} updates — {official} official, {items.length - official} fan buzz. {items[0] && `Top story: ${items[0].title}.`}
       </div>
       <div className="mb-5 flex gap-2">

@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep social permission review in the dedicated `/connections` route; disable provider authorization until a linked client and real app-user authentication exist, so consent is never simulated.
+- Keep the shared concert masthead and navigation in Shell and express visual roles through global semantic tokens so all content pages maintain the same identity.
