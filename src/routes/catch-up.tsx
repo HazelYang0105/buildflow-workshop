@@ -11,6 +11,8 @@ export const Route = createFileRoute("/catch-up")({
       { name: "description", content: "Been away? Summarize the last 1, 3 or 7 days of your fandom in 1, 3 or 10 minutes." },
       { property: "og:title", content: "Catch-up Mode — BiasBrief" },
       { property: "og:description", content: "Catch up on your fandom at your own pace." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: CatchUp,
