@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Shell, Chip } from "@/components/Shell";
-import { CPS, GROUP, MEMBERS, STAN_TYPES, loadPrefs, savePrefs } from "@/lib/data";
+import { CPS, GROUP, GROUPS, MEMBERS, STAN_TYPES, loadPrefs, savePrefs } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 
@@ -25,13 +25,14 @@ function toggle(list: string[], v: string) {
 
 function Index() {
   const nav = useNavigate();
+  const [group, setGroup] = useState<string>(GROUPS[0]);
   const [members, setMembers] = useState<string[]>([]);
   const [cps, setCps] = useState<string[]>([]);
   const [stanType, setStanType] = useState<string>("Group stan");
 
   useEffect(() => {
     const p = loadPrefs();
-    if (p) { setMembers(p.members); setCps(p.cps); setStanType(p.stanType); }
+    if (p) { setGroup(p.group || GROUPS[0]); setMembers(p.members); setCps(p.cps); setStanType(p.stanType); }
   }, []);
 
   return (
