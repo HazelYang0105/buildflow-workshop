@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import { Shell, Chip } from "@/components/Shell";
 import { DigestList } from "@/components/DigestList";
 import { buildDigest, loadPrefs, type Prefs } from "@/lib/data";
+import { YouTubeFeed } from "@/components/YouTubeFeed";
+import { youtubeQueryOptions } from "@/lib/youtube-query";
 
 export const Route = createFileRoute("/catch-up")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(youtubeQueryOptions),
   head: () => ({
     meta: [
       { title: "Catch-up Mode — BiasBrief" },
@@ -37,7 +40,9 @@ function CatchUp() {
           {[1, 3, 10].map((m) => <Chip key={m} on={mins === m} onClick={() => setMins(m)}>{m} min</Chip>)}
         </Row>
       </div>
-      <div className="mt-8"><DigestList items={items} /></div>
+      <YouTubeFeed days={days} limit={mins * 2} />
+      <h2 className="font-display mt-8 text-2xl font-bold">LUMIÈRE · Sample catch-up</h2>
+      <div className="mt-5"><DigestList items={items} /></div>
     </Shell>
   );
 }
