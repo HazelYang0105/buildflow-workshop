@@ -15,7 +15,7 @@ export function Shell({ children }: { children: ReactNode }) {
             ["/catch-up", "Catch-up"],
             ["/connections", "Connections"],
           ] as const).map(([to, l]) => (
-            <Link key={to} to={to} className="rounded-full px-3 py-1.5 text-muted-foreground hover:text-foreground" activeProps={{ className: "bg-foreground text-background" }} activeOptions={{ exact: true }}>
+            <Link key={to} to={to} className="rounded-full px-3 py-1.5 hover:text-primary" activeProps={{ className: "bg-foreground text-background" }} inactiveProps={{ className: "text-muted-foreground" }} activeOptions={{ exact: true }}>
               {l}
             </Link>
           ))}
