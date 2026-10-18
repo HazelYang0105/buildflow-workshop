@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Shell, Chip } from "@/components/Shell";
-import { CPS, GROUP, MEMBERS, STAN_TYPES, loadPrefs, savePrefs } from "@/lib/data";
+import { CPS, GROUP, GROUPS, MEMBERS, STAN_TYPES, loadPrefs, savePrefs } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 
@@ -25,13 +25,14 @@ function toggle(list: string[], v: string) {
 
 function Index() {
   const nav = useNavigate();
+  const [group, setGroup] = useState<string>(GROUP);
   const [members, setMembers] = useState<string[]>([]);
   const [cps, setCps] = useState<string[]>([]);
   const [stanType, setStanType] = useState<string>("Group stan");
 
   useEffect(() => {
     const p = loadPrefs();
-    if (p) { setMembers(p.members); setCps(p.cps); setStanType(p.stanType); }
+    if (p) { setGroup(p.group || GROUP); setMembers(p.members); setCps(p.cps); setStanType(p.stanType); }
   }, []);
 
   return (
@@ -47,17 +48,20 @@ function Index() {
       </section>
 
       <div className="max-w-3xl space-y-8">
-        <Block n="1" title="How do you stan?">
-          {STAN_TYPES.map((s) => <Chip key={s} on={stanType === s} onClick={() => setStanType(s)}>{s}</Chip>)}
+        <Block n="1" title="Which group are you interested in?">
+          {GROUPS.map((g) => <Chip key={g} on={group === g} onClick={() => setGroup(g)}>{g}{g !== GROUP ? " ✦ coming soon" : ""}</Chip>)}
         </Block>
-        <Block n="2" title="Your bias(es)">
+        <Block n="2" title={`Your bias(es)${group === GROUP ? "" : ` — ${GROUP} sample picks`}`}>
           {MEMBERS.map((m) => <Chip key={m} on={members.includes(m)} onClick={() => setMembers(toggle(members, m))}>{m}</Chip>)}
         </Block>
         <Block n="3" title="CPs you follow (optional)">
           {CPS.map((c) => <Chip key={c} on={cps.includes(c)} onClick={() => setCps(toggle(cps, c))}>♡ {c}</Chip>)}
         </Block>
+        <Block n="4" title="How do you stan?">
+          {STAN_TYPES.map((s) => <Chip key={s} on={stanType === s} onClick={() => setStanType(s)}>{s}</Chip>)}
+        </Block>
         <Button
-          onClick={() => { savePrefs({ members, cps, stanType }); nav({ to: "/digest" }); }}
+          onClick={() => { savePrefs({ group, members, cps, stanType }); nav({ to: "/digest" }); }}
           className="card-pop h-14 w-full rounded-lg border border-foreground font-display text-lg font-bold"
         >
           Get today's brief <ArrowUpRight />

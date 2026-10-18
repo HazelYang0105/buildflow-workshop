@@ -37,7 +37,7 @@ function Digest() {
       )}
       {prefs && (
         <p className="mt-3 text-muted-foreground">
-          {prefs.stanType}{prefs.members.length ? ` · ${prefs.members.join(", ")}` : ""}{prefs.cps.length ? ` · ♡ ${prefs.cps.join(", ")}` : ""}
+          {prefs.group}{` · `}{prefs.stanType}{prefs.members.length ? ` · ${prefs.members.join(", ")}` : ""}{prefs.cps.length ? ` · ♡ ${prefs.cps.join(", ")}` : ""}
         </p>
       )}
       <YouTubeFeed days={1} />
