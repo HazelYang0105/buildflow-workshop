@@ -16,6 +16,7 @@ export interface Item {
 
 export const GROUP = "LUMIÈRE";
 export const MEMBERS = ["Haneul", "Jiwoo", "Seojin", "Minho", "Taeyang"];
+export const GROUPS = ["LUMIÈRE", "BTS", "Stray Kids", "TWICE", "aespa", "SEVENTEEN"];
 export const CPS = ["Haneul × Jiwoo", "Seojin × Minho", "Jiwoo × Taeyang"];
 export const STAN_TYPES = ["Group stan", "Solo stan", "CP fan"] as const;
 
@@ -34,6 +35,7 @@ export const ITEMS: Item[] = [
 ];
 
 export interface Prefs {
+  group: string;
   members: string[];
   cps: string[];
   stanType: string;
